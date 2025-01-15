@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: f1_raw
+    database: f1
+    schema: raw
+    tables:
+      - name: circuits
+      - name: drivers
+
+models:
+  - name: stg_circuits
+    columns:
+      - name: circuit_id
+        data_tests:
+          - unique
+          - not_null
+  - name: stg_drivers
+    columns:
+      - name: driver_id
+        data_tests:
+          - unique
+          - not_null
+      - name: number
+        data_tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 99
+              inclusive: true
+              config:
+                where: "number is not null"

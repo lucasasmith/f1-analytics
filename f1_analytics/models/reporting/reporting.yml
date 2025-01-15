@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: driver_count_by_nationality
+    description: The count of drivers by their nationality.

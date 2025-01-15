@@ -1,0 +1,4 @@
+dbt-core
+dbt-duckdb
+kagglehub
+python-dotenv

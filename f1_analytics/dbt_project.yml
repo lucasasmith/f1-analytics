@@ -1,0 +1,33 @@
+
+name: 'f1_analytics'
+version: '1.0.0'
+
+profile: 'f1_analytics'
+
+quoting:
+  database: false
+  schema: false
+  identifier: false
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  f1_analytics:
+    core:
+      schema: core
+      materialized: table
+    reporting:
+      schema: reporting
+      materialized: view
+seeds:
+  f1_analytics:
+    schema: raw
