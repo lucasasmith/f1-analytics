@@ -7,6 +7,7 @@ sources:
     tables:
       - name: circuits
       - name: drivers
+      - name: races
 
 models:
   - name: stg_circuits
@@ -15,6 +16,7 @@ models:
         data_tests:
           - unique
           - not_null
+
   - name: stg_drivers
     columns:
       - name: driver_id
@@ -29,3 +31,10 @@ models:
               inclusive: true
               config:
                 where: "number is not null"
+
+  - name: stg_races
+    columns:
+      - name: race_id
+        data_tests:
+          - unique
+          - not_null
