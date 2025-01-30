@@ -34,11 +34,9 @@ line-length = 100
 indent-width = 4
 
 [tool.ruff.lint]
-# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
-# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
-# McCabe complexity (`C901`) by default.
 select = ["ALL"]
 ignore = ["G004", "D100"]
 
 [tool.ruff.format]
 quote-style = "double"
+skip-magic-trailing-comma = true

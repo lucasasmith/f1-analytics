@@ -7,17 +7,17 @@ with source as (
 )
 
 select
-    driverId as driver_id,
-    driverRef as driver_ref_name,
-    nullif(number, '\N')::int as number,
-    code,
-    forename as first_name,
-    surname as last_name,
-    dob,
-    case nationality
-        when 'East German' then 'German'
-        else nationality
-    end as nationality,
-    url
+    id as driver_id,
+    name,
+    firstName as first_name,
+    lastName as last_name,
+    fullName as full_name,
+    abbreviation,
+    dateOfBirth as date_of_birth,
+    dateOfDeath as date_of_death,
+    placeOfBirth as place_of_birth,
+    countryOfBirthCountryId as country_id_of_birth,
+    nationalityCountryId as nationality_country_id,
+    permanentNumber as number
 from
     source

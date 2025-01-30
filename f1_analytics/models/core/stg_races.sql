@@ -7,16 +7,18 @@ with source as (
 )
 
 select
-    raceId as race_id,
+    id as race_id,
     year,
     round,
-    circuitID as circuit_id,
-    name,
     date,
     time,
-    url,
-    quali_time as qualifying_time,
-    sprint_date,
-    sprint_time
+    grandPrixId as gp_id,
+    officialName as official_name,
+    circuitID as circuit_id,
+    qualifyingFormat as qualifying_format,
+    sprintQualifyingFormat as sprint_qualifying_format,
+    laps,
+    qualifyingDate as qualifying_date,
+    qualifyingTime as qualifying_time
 from
     source

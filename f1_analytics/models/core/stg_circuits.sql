@@ -7,17 +7,16 @@ with source as (
 )
 
 select
-    circuitID as circuit_id,
-    circuitRef as circuit_ref_name,
+    id as circuit_id,
     name,
-    location as location_name,
-    case country
-        when 'United States' then 'USA'
-        else country
-    end as country,
-    lat as latitude,
-    lng as longitude,
-    alt as altitude,
-    url
+    fullName as full_name,
+    placeName as place_name,
+    type,
+    direction,
+    countryId as country_id,
+    latitude,
+    longitude,
+    length as length_km,
+    turns
 from
     source
