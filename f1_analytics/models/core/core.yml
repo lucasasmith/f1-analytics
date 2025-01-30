@@ -8,6 +8,7 @@ sources:
       - name: circuits
       - name: drivers
       - name: races
+      - name: races_race_results
 
 models:
   - name: stg_circuits
@@ -38,3 +39,13 @@ models:
         data_tests:
           - unique
           - not_null
+
+  - name: stg_race_results
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - race_id
+            - driver_id
+    columns:
+      - name: race_id
+      - name: driver_id

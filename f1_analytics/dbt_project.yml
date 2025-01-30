@@ -28,6 +28,11 @@ models:
     reporting:
       schema: reporting
       materialized: view
+
 seeds:
   f1_analytics:
+    +quote_columns: true
     schema: raw
+
+tests:
+  +severity: warn 
