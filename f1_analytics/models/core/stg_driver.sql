@@ -1,4 +1,4 @@
-{{ config(alias='drivers') }}
+{{ config(alias='driver') }}
 
 with source as (
     select *

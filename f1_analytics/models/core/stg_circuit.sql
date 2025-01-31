@@ -1,4 +1,4 @@
-{{ config(alias='circuits') }}
+{{ config(alias='circuit') }}
 
 with source as (
     select *

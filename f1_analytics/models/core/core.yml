@@ -11,14 +11,14 @@ sources:
       - name: races_race_results
 
 models:
-  - name: stg_circuits
+  - name: stg_circuit
     columns:
       - name: circuit_id
         data_tests:
           - unique
           - not_null
 
-  - name: stg_drivers
+  - name: stg_driver
     columns:
       - name: driver_id
         data_tests:
@@ -33,14 +33,14 @@ models:
               config:
                 where: "number is not null"
 
-  - name: stg_races
+  - name: stg_race
     columns:
       - name: race_id
         data_tests:
           - unique
           - not_null
 
-  - name: stg_race_results
+  - name: stg_race_result
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:

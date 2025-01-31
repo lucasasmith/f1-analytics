@@ -1,7 +1,0 @@
-version: 2
-
-models:
-  - name: circuit_most_recent_race
-    description: The most recent race at a circuit.
-  - name: driver_count_by_nationality
-    description: The count of drivers by their nationality.
