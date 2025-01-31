@@ -3,7 +3,6 @@
 *.duckdb
 .user.yml
 .env
-**/profiles.yml
 .venv
 .vscode
 data_files/

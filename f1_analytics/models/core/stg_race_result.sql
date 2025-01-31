@@ -1,4 +1,4 @@
-{{ config(alias='race_results') }}
+{{ config(alias='race_result') }}
 
 with source as (
     select *
