@@ -15,7 +15,7 @@
 As of now, next steps to work with the data are:
 - Add more dbt models
 - Navigate to the `f1_streamlit` dir and run `streamlit run main_page.py`. This will open a Streamlit app where ad-hoc queries can be issued and some pre-built analysis has been completed.
-![Alt text](https://github.com/lucasasmith/f1-analytics/assets/streamlit_demo.png)
+![Alt text](https://github.com/lucasasmith/f1-analytics/blob/main/assets/streamlit_demo.png)
 
 ### Source Data
 Credit to [f1db](https://github.com/f1db/f1db) for the source data of this project. Thanks!
