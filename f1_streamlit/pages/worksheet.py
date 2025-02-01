@@ -15,5 +15,5 @@ def issue_query(query_str: str):
 query_str = st.text_area("Enter a DuckDB query here.", height=300)
 if st.button("Run"):
     data_return = issue_query(query_str)
-    st.dataframe(data_return)
+    st.dataframe(data_return, use_container_width=True)
 st.markdown(f"Database file path: {DUCKDB_FILE_PATH}")
