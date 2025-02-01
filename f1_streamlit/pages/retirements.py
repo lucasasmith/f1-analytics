@@ -11,18 +11,7 @@ def issue_query(query_str: str):
 
 
 st.markdown("### Retirements by year")
-yearly_retirements_query = """
-    select
-        race.year,
-        count(0) as retirement_count
-    from core.race_result as rr
-    inner join core.race
-    using(race_id)
-    where
-        rr.reason_retired is not null
-    group by
-        all
-"""
+yearly_retirements_query = "select * from reporting.retirements_by_year"
 yearly_retirements_df = issue_query(yearly_retirements_query)
 st.bar_chart(
     data=yearly_retirements_df,
@@ -38,18 +27,7 @@ with st.expander("See query"):
 
 st.markdown("""This only tells some of the story though. Since the number of races per year can 
             vary, lets calculate the ratio of average retirements per race by year.""")
-yearly_average_retirements_per_race_query = """
-    select
-        race.year,
-        round(count(rr.reason_retired) /
-        count(distinct race.race_id), 1) as ratio
-    from
-        core.race_result as rr
-        inner join core.race
-        using(race_id)
-    group by
-        all
-"""
+yearly_average_retirements_per_race_query = "from reporting.retirements_ratio_by_year"
 yearly_average_retirements_per_race_df = issue_query(yearly_average_retirements_per_race_query)
 st.bar_chart(
     data=yearly_average_retirements_per_race_df,
@@ -66,19 +44,7 @@ st.markdown("""You can see the data doesn't change the picture by much. But, the
             dramatic shift in reliability.""")
 
 st.markdown("Lastly, summarize all the reasons for retirement by count.")
-reason_retired_count_query = """
-    select
-        lower(reason_retired) reason_retired,
-        count(0) as count
-    from
-        core.race_result
-    where
-        reason_retired is not null
-    group by
-        all
-    having
-        count >= 5
-"""
+reason_retired_count_query = "from reporting.retirements_by_reason"
 reason_retired_count_df = issue_query(reason_retired_count_query)
 st.bar_chart(
     data=reason_retired_count_df,

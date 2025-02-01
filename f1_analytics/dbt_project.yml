@@ -25,6 +25,9 @@ models:
     core:
       schema: core
       materialized: table
+    reporting:
+      schema: reporting
+      materialized: view
 
 seeds:
   f1_analytics:
