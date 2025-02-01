@@ -8,6 +8,7 @@ sources:
       - name: circuits
       - name: drivers
       - name: races
+      - name: races_qualifying_results
       - name: races_race_results
 
 models:
@@ -32,6 +33,13 @@ models:
               inclusive: true
               config:
                 where: "number is not null"
+
+  - name: stg_qualifying_result
+    data_tests:
+    - dbt_utils.unique_combination_of_columns:
+        combination_of_columns:
+          - race_id
+          - driver_id
 
   - name: stg_race
     columns:

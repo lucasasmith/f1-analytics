@@ -11,6 +11,7 @@ select
     driverId as driver_id,
     constructorId as constructor_id,
     engineManufacturerId as engine_manufacturer_id,
+    positionDisplayOrder as position,
     time,
     timeMillis as time_ms,
     timePenalty as time_penalty,
@@ -24,5 +25,6 @@ select
     points,
     pitStops as pit_stops,
     driverOfTheDay as is_driver_of_the_day,
+    year
 from
     source
