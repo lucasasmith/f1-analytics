@@ -1,3 +1,12 @@
+## Project
+This is a project to demonstrate an ELT process to ingest, model, transform, and analyze Formula 1 data. Every tool used is open to use and no signups/logins required. Tools utilized:
+- DuckDB
+- dbt
+- Streamlit
+
+Architecture
+![Alt text](https://github.com/lucasasmith/f1-analytics/blob/main/assets/f1_diagram.png)
+
 
 ## Setup
 - Clone repo.
@@ -8,7 +17,7 @@
   - Download a .zip of csv files from the [f1db](https://github.com/f1db/f1db) repo latest release.
   - Place the .csv files in the dbt `seeds` dir and rename them appropriately.
   - Create and setup a DuckDB `f1.db` file and create `raw`, `core`, and `reporting` schemas.
-  - Run `dbt deps`, `dbt seed`, and build the `core` models.
+  - Run `dbt deps`, `dbt seed`, and build the `core` and `reporting` models.
   - Warn about any `data_tests` that have failed.
 
 ## Next Steps

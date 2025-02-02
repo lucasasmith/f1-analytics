@@ -30,13 +30,16 @@ def setup_duckdb():
 
 
 def setup_dbt():
-    logger.info("Starting setup of dbt.")
-    deps_cmd = ["dbt", "deps"]
-    subprocess.run(deps_cmd, cwd=DBT_PROJECT_PATH, check=True)
-    seed_cmd = ["dbt", "seed"]
-    subprocess.run(seed_cmd, cwd=DBT_PROJECT_PATH, check=True)
-    build_cmd = ["dbt", "build", "--select", "core"]
-    subprocess.run(build_cmd, cwd=DBT_PROJECT_PATH, check=True)
+    logger.info("Setting up dbt and running models.")
+    dbt_cmd_list = [
+        ["dbt", "deps"],
+        ["dbt", "seed"],
+        ["dbt", "build", "--select", "core"],
+        ["dbt", "build", "--select", "reporting"],
+    ]
+
+    for dbt_cmd in dbt_cmd_list:
+        subprocess.run(dbt_cmd, cwd=DBT_PROJECT_PATH, check=True)
 
 
 def get_data_files():
