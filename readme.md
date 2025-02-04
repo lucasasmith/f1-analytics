@@ -9,6 +9,7 @@ Architecture
 
 
 ## Setup
+- NOTE: the following most likely only works on macos.
 - Clone repo.
 - Create a new venv with `uv`.
   - `uv venv --python 3.13` and activate.
@@ -19,6 +20,7 @@ Architecture
   - Create and setup a DuckDB `f1.db` file and create `raw`, `core`, and `reporting` schemas.
   - Run `dbt deps`, `dbt seed`, and build the `core` and `reporting` models.
   - Warn about any `data_tests` that have failed.
+  - This script can also be used to completely refresh the db file and re-run models.
 
 ## Next Steps
 As of now, next steps to work with the data are:

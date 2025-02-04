@@ -20,6 +20,12 @@ DBT_PROJECT_PATH = "f1_analytics/"
 DBT_SEED_PATH = "f1_analytics/seeds/"
 
 
+def cleanup_existing():
+    """Cleanup any existing db file."""
+    logger.info("Deleting any existing DuckDB file for a clean slate.")
+    Path(DBT_PROJECT_PATH + "f1.db").unlink()
+
+
 def setup_duckdb():
     logger.info("Creating DuckDB file and schemas.")
     duckdb_file_path = DBT_PROJECT_PATH + "f1.db"
@@ -70,6 +76,8 @@ def get_data_files():
     # Delete the .zip file.
     data_files_path.unlink()
 
+
+def extract_data_files():
     # The extracted files use "-" which is incompatible with dbt.
     # Let's rename them and remove f1db- as well.
     seed_files = Path(DBT_SEED_PATH).glob("*.csv")
@@ -81,6 +89,8 @@ def get_data_files():
 
 
 if __name__ == "__main__":
+    cleanup_existing()
     get_data_files()
+    extract_data_files()
     setup_duckdb()
     setup_dbt()
