@@ -25,7 +25,7 @@ Architecture
 ## Next Steps
 As of now, next steps to work with the data are:
 - Add more dbt models
-- Navigate to the `app` dir and run `streamlit run main_page.py`. This will open a Streamlit app where ad-hoc queries can be issued and some pre-built analysis has been completed.
+- Run Streamlit with `streamlit run app/main_page.py`. This will open a Streamlit app where ad-hoc queries can be issued and some pre-built analysis has been completed.
 ![Alt text](https://github.com/lucasasmith/f1-analytics/blob/main/assets/streamlit_demo.png)
 
 ### Source Data

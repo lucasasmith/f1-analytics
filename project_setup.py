@@ -16,20 +16,21 @@ logger = logging.getLogger(__name__)
 TO_SECS = 10  # timeout seconds
 RELEASES_URL = "https://api.github.com/repos/f1db/f1db/releases/latest"
 F1_CSV_ASSET_NAME = "f1db-csv.zip"  # asset defined in the f1db releases.
+DUCKDB_PATH = Path("f1.db")
 DBT_PROJECT_PATH = "f1_analytics/"
 DBT_SEED_PATH = "f1_analytics/seeds/"
 
 
 def cleanup_existing():
     """Cleanup any existing db file."""
-    logger.info("Deleting any existing DuckDB file for a clean slate.")
-    Path(DBT_PROJECT_PATH + "f1.db").unlink()
+    if DUCKDB_PATH.exists():
+        logger.info("Deleting existing DuckDB file for a clean project.")
+        DUCKDB_PATH.unlink()
 
 
 def setup_duckdb():
     logger.info("Creating DuckDB file and schemas.")
-    duckdb_file_path = DBT_PROJECT_PATH + "f1.db"
-    with duckdb.connect(duckdb_file_path) as conn:
+    with duckdb.connect(DUCKDB_PATH) as conn:
         conn.sql("create schema if not exists raw;")
         conn.sql("create schema if not exists core;")
         conn.sql("create schema if not exists reporting;")
