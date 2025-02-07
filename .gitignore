@@ -6,7 +6,6 @@
 .venv
 .vscode
 data_files/
-f1.db
 **/seeds/
 *.pyc
 
