@@ -1,19 +1,13 @@
 import duckdb
 import streamlit as st
 
-DUCKDB_FILE_PATH = "../f1_analytics/f1.db"
+from pages import Option, issue_query
 
 st.set_page_config(layout="wide")
 st.markdown("# Query Worksheet")
 
 
-def issue_query(query_str: str):
-    with duckdb.connect(DUCKDB_FILE_PATH) as conn:
-        return conn.sql(query_str).df()
-
-
 query_str = st.text_area("Enter a DuckDB query here.", height=300)
 if st.button("Run"):
-    data_return = issue_query(query_str)
+    data_return = issue_query(query_str=query_str, return_obj=Option.DATAFRAME)
     st.dataframe(data_return, hide_index=True, use_container_width=True)
-st.markdown(f"Database file path: {DUCKDB_FILE_PATH}")

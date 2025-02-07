@@ -35,8 +35,8 @@ indent-width = 4
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["G004", "D100"]
+ignore = ["G004","D100", "COM812"]
 
 [tool.ruff.format]
 quote-style = "double"
-skip-magic-trailing-comma = true
+skip-magic-trailing-comma = false

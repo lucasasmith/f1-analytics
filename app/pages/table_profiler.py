@@ -1,16 +1,23 @@
 import duckdb
 import streamlit as st
 
-from pages import Option, issue_query
+from pages import Option, issue_query, issue_query_params
 
 st.set_page_config(layout="wide")
 st.markdown("# Table Profiler")
 
 
 schema_selection = st.selectbox(label="Choose schema", options=["raw", "core"])
-table_list_query = (
-    f"select table_name from information_schema.tables where table_schema = '{schema_selection}';"
+table_list_query = "select table_name from information_schema.tables where table_schema = $1;"
+table_list = issue_query_params(
+    query_str=table_list_query, query_params=[schema_selection], return_obj=Option.PYTHON_OBJ
 )
-table_list = issue_query(table_list_query, return_obj=Option.PYTHONOBJ)
 tables = (table[0] for table in table_list)
 table_selection = st.selectbox(label="Table", options=tables)
+fqn = f"{schema_selection}.{table_selection}"
+
+# Show table summary.
+if st.button(f"Summarize table {fqn}"):
+    table_summary_query = f"summarize {fqn};"
+    table_summary_df = issue_query(query_str=table_summary_query, return_obj=Option.DATAFRAME)
+    st.dataframe(table_summary_df)

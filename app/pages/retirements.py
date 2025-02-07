@@ -1,18 +1,14 @@
 import duckdb
 import streamlit as st
 
+from pages import Option, issue_query
+
 st.set_page_config(layout="wide")
 st.markdown("# F1 Retirement Analysis")
 
-
-def issue_query(query_str: str):
-    with duckdb.connect("../f1_analytics/f1.db") as conn:
-        return conn.sql(query_str).df()
-
-
 st.markdown("### Retirements by year")
-yearly_retirements_query = "select * from reporting.retirements_by_year"
-yearly_retirements_df = issue_query(yearly_retirements_query)
+yearly_retirements_query = "from reporting.retirements_by_year"
+yearly_retirements_df = issue_query(query_str=yearly_retirements_query, return_obj=Option.DATAFRAME)
 st.bar_chart(
     data=yearly_retirements_df,
     x="year",
@@ -28,7 +24,9 @@ with st.expander("See query"):
 st.markdown("""This only tells some of the story though. Since the number of races per year can 
             vary, lets calculate the ratio of average retirements per race by year.""")
 yearly_average_retirements_per_race_query = "from reporting.retirements_ratio_by_year"
-yearly_average_retirements_per_race_df = issue_query(yearly_average_retirements_per_race_query)
+yearly_average_retirements_per_race_df = issue_query(
+    query_str=yearly_average_retirements_per_race_query, return_obj=Option.DATAFRAME
+)
 st.bar_chart(
     data=yearly_average_retirements_per_race_df,
     x="year",
@@ -45,7 +43,9 @@ st.markdown("""You can see the data doesn't change the picture by much. But, the
 
 st.markdown("Lastly, summarize all the reasons for retirement by count.")
 reason_retired_count_query = "from reporting.retirements_by_reason"
-reason_retired_count_df = issue_query(reason_retired_count_query)
+reason_retired_count_df = issue_query(
+    query_str=reason_retired_count_query, return_obj=Option.DATAFRAME
+)
 st.bar_chart(
     data=reason_retired_count_df,
     x="reason_retired",
