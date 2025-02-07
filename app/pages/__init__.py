@@ -2,7 +2,7 @@ from enum import Enum
 
 import duckdb
 
-DUCKDB_FILE_PATH = "../f1_analytics/f1.db"
+DUCKDB_FILE_PATH = "f1.db"
 
 
 class Option(Enum):

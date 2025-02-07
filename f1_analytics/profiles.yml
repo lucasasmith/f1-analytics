@@ -2,7 +2,7 @@ f1_analytics:
   outputs:
     prod:
       type: duckdb
-      path: f1.db
+      path: ../f1.db
       threads: 1
 
   target: prod
