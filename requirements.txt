@@ -1,5 +1,5 @@
-dbt-core
-dbt-duckdb
-polars
-requests
-streamlit
+dbt-core==1.9.2
+dbt-duckdb==1.9.1
+polars==1.21.0
+requests==2.32.3
+streamlit==1.42.0
