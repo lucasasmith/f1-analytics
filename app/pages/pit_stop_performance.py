@@ -1,6 +1,7 @@
 import duckdb
 import polars as pl
 import streamlit as st
+
 from pages import Option, issue_query
 
 st.set_page_config(layout="wide")

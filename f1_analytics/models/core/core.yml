@@ -11,6 +11,7 @@ sources:
       - name: races_pit_stops
       - name: races_qualifying_results
       - name: races_race_results
+      - name: seasons_driver_standings
 
 models:
   - name: stg_circuit
@@ -34,6 +35,8 @@ models:
               inclusive: true
               config:
                 where: "number is not null"
+
+  - name: stg_driver_standings
 
   - name: stg_pit_stop
     columns:
