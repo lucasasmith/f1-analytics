@@ -20,11 +20,12 @@ select
     gapMillis as gap_ms,
     gapLaps as gap_laps,
     interval,
+    driverOfTheDay as is_driver_of_the_day,
     intervalMillis as interval_ms,
     reasonRetired as reason_retired,
     points,
     pitStops as pit_stops,
-    driverOfTheDay as is_driver_of_the_day,
+    round,
     year
 from
     source
