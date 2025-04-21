@@ -23,5 +23,11 @@ with col2:
     st.text("Result by race:")
     st.dataframe(results_df.sort("race_desc", "position"))
 
+with col3:
+    results_summary_query = "from reporting.race_results_summary_2025"
+    results_summary_df = issue_query(query_str=results_summary_query, return_obj=Option.POLARS)
+    st.text("Season results summary:")
+    st.dataframe(results_summary_df.sort("avg_result"))
+
 st.text("Result by race:")
 st.line_chart(data=results_df, x="race_desc", y="position", color="driver_id", height=800)
