@@ -12,7 +12,7 @@ with results as (
         inner join {{ ref('stg_race') }} as race
         using(race_id)
     where
-        qr.year = 2024
+        qr.year = {{ var('current_season_year') }}
         and qr.position is not null
 )
 
