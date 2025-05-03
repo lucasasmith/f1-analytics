@@ -21,3 +21,7 @@ if st.button(f"Summarize table {fqn}"):
     table_summary_query = f"summarize {fqn};"
     table_summary_df = issue_query(query_str=table_summary_query, return_obj=Option.DATAFRAME)
     st.dataframe(table_summary_df)
+    st.text("Table preview")
+    table_preview_query = f"select * from {fqn} limit 5000"
+    table_preview_df = issue_query(query_str=table_preview_query, return_obj=Option.POLARS)
+    st.dataframe(table_preview_df)
