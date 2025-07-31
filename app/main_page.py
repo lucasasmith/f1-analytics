@@ -21,6 +21,6 @@ st.markdown("""
     dbt is used to:
     - load the inital raw CSV's into the `raw` schema.
     - create `core` [silver layer tables](https://github.com/lucasasmith/f1-analytics/tree/main/f1_analytics/models/core).
-    - create `reporing` [gold layer views](https://github.com/lucasasmith/f1-analytics/tree/main/f1_analytics/models/reporting).
+    - create `reporting` [gold layer views](https://github.com/lucasasmith/f1-analytics/tree/main/f1_analytics/models/reporting).
     - run data tests (verifying primary keys, ranges, etc.)
 """)
