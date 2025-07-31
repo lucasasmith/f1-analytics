@@ -27,6 +27,7 @@ exclude = [
     "node_modules",
     "site-packages",
     "venv",
+    "app/main_page.py",
 ]
 
 
