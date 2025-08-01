@@ -15,6 +15,7 @@ with stop_avg_by_race as (
 		and time_s < 300
 	group by all
 ),
+
 stop_rank_by_race as (
 	select
 		year,
@@ -22,6 +23,7 @@ stop_rank_by_race as (
 		rank() over(partition by race_id order by stop_time_avg) as race_rank
 	from stop_avg_by_race
 )
+
 select
 	year::varchar as year,
 	constructor_id,

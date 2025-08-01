@@ -1,3 +1,5 @@
+"""Organize methods to query data."""
+
 from enum import Enum
 
 import duckdb
@@ -12,6 +14,7 @@ class Option(Enum):
 
 
 def issue_query(query_str: str, return_obj: Option):
+    """Issue a query to DuckDB and return a specific object."""
     with duckdb.connect(DUCKDB_FILE_PATH, read_only=True) as conn:
         if return_obj == Option.DATAFRAME:
             return conn.sql(query_str).df()
@@ -23,6 +26,7 @@ def issue_query(query_str: str, return_obj: Option):
 
 
 def issue_query_params(query_str: str, return_obj: Option, query_params: list):
+    """Issue a query to DuckDB with provided parameters."""
     with duckdb.connect(DUCKDB_FILE_PATH, read_only=True) as conn:
         if return_obj == Option.DATAFRAME:
             return conn.sql(query_str).df()

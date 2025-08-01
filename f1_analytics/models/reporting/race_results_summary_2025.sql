@@ -2,7 +2,7 @@
 
 select
     rr.driver_id,
-    avg(rr.position) as avg_result,
+    round(avg(rr.position), 1) as avg_result,
     min(rr.position) as best_result,
     max(rr.position) as worst_result,
     count(rr.position) as total_races

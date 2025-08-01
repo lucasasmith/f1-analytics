@@ -1,5 +1,5 @@
-import duckdb
-import polars as pl
+"""Page to visualize pit stop performance."""
+
 import streamlit as st
 
 from pages import Option, issue_query
