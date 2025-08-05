@@ -1,0 +1,44 @@
+
+name: 'f1_dbt'
+version: '1.0.0'
+
+profile: 'f1_analytics'
+
+quoting:
+  database: false
+  schema: false
+  identifier: false
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+vars:
+  current_season_year: 2025 # Used in models as a filter.
+
+models:
+  f1_dbt:
+    core:
+      schema: core
+      materialized: table
+    reporting:
+      schema: reporting
+      materialized: view
+    marts:
+      schema: reporting
+      materialized: table
+
+seeds:
+  f1_dbt:
+    +quote_columns: true
+    schema: raw
+
+tests:
+  +severity: warn 
