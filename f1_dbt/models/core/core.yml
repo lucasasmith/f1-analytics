@@ -6,6 +6,7 @@ sources:
     schema: raw
     tables:
       - name: circuits
+      - name: constructors
       - name: drivers
       - name: races
       - name: races_pit_stops
