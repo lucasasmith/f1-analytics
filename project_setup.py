@@ -44,8 +44,8 @@ def setup_dbt() -> None:
         ["dbt", "deps"],
         ["dbt", "seed"],
         ["dbt", "build", "--select", "core"],
-        ["dbt", "build", "--select", "reporting"],
         ["dbt", "build", "--select", "marts"],
+        ["dbt", "build", "--select", "reporting"],
     ]
 
     for dbt_cmd in dbt_cmd_list:

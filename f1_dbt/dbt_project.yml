@@ -28,12 +28,12 @@ models:
     core:
       schema: core
       materialized: table
-    reporting:
-      schema: reporting
-      materialized: view
     marts:
       schema: reporting
       materialized: table
+    reporting:
+      schema: reporting
+      materialized: view
 
 seeds:
   f1_dbt:
