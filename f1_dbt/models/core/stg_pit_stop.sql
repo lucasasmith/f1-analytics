@@ -10,8 +10,9 @@ select
     raceId as race_id,
     constructorId as constructor_id,
     driverId as driver_id,
-    stop,
     md5(concat(raceId, constructor_id, driver_id, stop)) as pit_stop_id, -- Creating the pk
+    tyreManufacturerId as tyre_manufacturer_id,
+    stop as stop_num,
     year,
     round,
     lap,

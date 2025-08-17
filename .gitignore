@@ -1,6 +1,7 @@
 **/target/*
 **/dbt_packages/*
 *.duckdb
+dbt.log*
 .user.yml
 .env
 .venv
