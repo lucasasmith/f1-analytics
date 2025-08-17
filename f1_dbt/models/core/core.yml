@@ -13,6 +13,7 @@ sources:
       - name: races_qualifying_results
       - name: races_race_results
       - name: seasons_driver_standings
+      - name: tyre_manufacturers
 
 models:
   - name: stg_circuit
