@@ -19,6 +19,10 @@ jobs:
           # Fetch full history so git can compare changes against the base branch
           fetch-depth: 0
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y bubblewrap
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -42,11 +46,12 @@ jobs:
       - name: Run dbt Wizard Review
         id: wizard_review
         run: |
-          # Review only the changes between this PR branch and the base branch
-          wizard review --base "origin/${{ github.base_ref }}" > review.md
+          wizard review \
+            --model gemini-2.5-pro \
+            --base "origin/${{ github.base_ref }}" > review.md
         env:
-          # Set your AI provider API key in GitHub Secrets (e.g. OpenAI, Anthropic, Gemini)
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DBT_WIZARD_MODEL: gemini-2.5-pro
 
       - name: Post Review Comment on Pull Request
         if: always() && hashFiles('review.md') != ''
