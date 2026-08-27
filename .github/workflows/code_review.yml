@@ -26,6 +26,7 @@ jobs:
 
       # Optional: If your project relies on compiled dbt artifacts for deep inspection
       - name: Setup dbt & Compile
+        working-directory: f1_dbt
         run: |
           pip install dbt-core dbt-duckdb
           dbt parse
