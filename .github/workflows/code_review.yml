@@ -51,11 +51,11 @@ jobs:
         id: wizard_review
         run: |
           wizard review \
-            -c model="gemini-3.5-flash" \
+            -c model="gemini/gemini-3.5-flash" \
             --base "origin/${{ github.base_ref }}" > review.md
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          DBT_WIZARD_MODEL: gemini-3.5-flash
+          DBT_WIZARD_MODEL: gemini/gemini-3.5-flash
 
       - name: Post Review Comment on Pull Request
         if: always() && hashFiles('review.md') != ''
