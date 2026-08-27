@@ -19,6 +19,13 @@ jobs:
           # Fetch full history so git can compare changes against the base branch
           fetch-depth: 0
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+          cache: 'pip'
+          cache-dependency-path: 'requirements.txt'
+
       - name: Install dbt Wizard CLI
         run: |
           curl -fsSL https://public.cdn.getdbt.com/dbt-wizard/install/install-wizard.sh | sh
@@ -29,6 +36,7 @@ jobs:
         working-directory: f1_dbt
         run: |
           pip install dbt-core dbt-duckdb
+          dbt deps
           dbt parse
 
       - name: Run dbt Wizard Review
