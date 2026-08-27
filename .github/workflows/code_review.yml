@@ -47,7 +47,7 @@ jobs:
         id: wizard_review
         run: |
           wizard review \
-            --model gemini-2.5-pro \
+            -c model="gemini-2.5-pro" \
             --base "origin/${{ github.base_ref }}" > review.md
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
