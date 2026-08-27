@@ -1,0 +1,51 @@
+name: dbt Wizard PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch full history so git can compare changes against the base branch
+          fetch-depth: 0
+
+      - name: Install dbt Wizard CLI
+        run: |
+          curl -fsSL https://public.cdn.getdbt.com/dbt-wizard/install/install-wizard.sh | sh
+          wizard --version
+
+      # Optional: If your project relies on compiled dbt artifacts for deep inspection
+      - name: Setup dbt & Compile
+        run: |
+          pip install dbt-core dbt-duckdb
+          dbt parse
+
+      - name: Run dbt Wizard Review
+        id: wizard_review
+        run: |
+          # Review only the changes between this PR branch and the base branch
+          wizard review --base "origin/${{ github.base_ref }}" > review.md
+        env:
+          # Set your AI provider API key in GitHub Secrets (e.g. OpenAI, Anthropic, Gemini)
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Post Review Comment on Pull Request
+        if: always() && hashFiles('review.md') != ''
+        run: |
+          if [ -s review.md ]; then
+            gh pr comment "${{ github.event.pull_request.number }}" --body-file review.md
+          else
+            echo "No review output generated."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
