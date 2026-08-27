@@ -50,9 +50,7 @@ jobs:
       - name: Run dbt Wizard Review
         id: wizard_review
         run: |
-          wizard review \
-            --model "gemini/gemini-3.5-flash" \
-            --base "origin/${{ github.base_ref }}" > review.md
+          wizard exec -c model="gemini/gemini-3.5-flash" "What's your thoughts on analytics engineering with dbt? Be short." > review.md
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DBT_WIZARD_MODEL: gemini/gemini-3.5-flash
