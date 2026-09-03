@@ -23,12 +23,12 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y bubblewrap
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.14'
-          cache: 'pip'
-          cache-dependency-path: 'requirements.txt'
+      # - name: Set up Python
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.14'
+      #     cache: 'pip'
+      #     cache-dependency-path: 'requirements.txt'
 
       - name: Install dbt Wizard CLI
         run: |
@@ -47,14 +47,16 @@ jobs:
       #   id: wizard_debug
       #   run: wizard debug models
 
+      - name: Fetch main branch
+        run: git fetch origin main:main
+
       - name: Run dbt Wizard Review
         id: wizard_review
         run: |
           wizard exec -c model="gemini/gemini-3.5-flash" \
           "Review the code in this branch compared to main. If you don't find any changes \
           that are related to dbt, post a message that you didn't find any dbt changes \
-          to review." \
-          -m gemini/gemini-3.5-flash > review.md
+          to review." > review.md
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DBT_WIZARD_MODEL: gemini/gemini-3.5-flash
