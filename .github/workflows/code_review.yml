@@ -53,7 +53,7 @@ jobs:
       - name: Run dbt Wizard Review
         id: wizard_review
         run: |
-          wizard exec --dangerously-bypass-approvals-and-sandbox "review changes between this branch and main" -m gemini/gemini-3.5-flash > review.md
+          wizard exec review --base main --dangerously-bypass-approvals-and-sandbox -m gemini/gemini-3.5-flash > review.md
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DBT_WIZARD_MODEL: gemini/gemini-3.5-flash
