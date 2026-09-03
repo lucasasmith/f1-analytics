@@ -53,10 +53,10 @@ jobs:
       - name: Run dbt Wizard Review
         id: wizard_review
         run: |
-          wizard exec -c model="gemini/gemini-3.5-flash" \
-          "Review the code in this branch compared to main. If you don't find any changes \
-          that are related to dbt, post a message that you didn't find any dbt changes \
-          to review." > review.md
+          wizard exec \
+            -m "gemini/gemini-3.5-flash" \
+            "Review the code in this branch compared to origin/main. If you don't find any changes that are related to dbt, post a message that you didn't find any dbt changes to review." \
+            > review.md
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DBT_WIZARD_MODEL: gemini/gemini-3.5-flash
